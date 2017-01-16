@@ -1,0 +1,34 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  
+  vars:
+    - ami_id: ami-b7a114d7
+    - key_pair: Melman-fiona  
+    - instance_type: t2.micro
+    - group: default
+    - aws_region: us-west-2
+
+  tasks:
+    - name: Include variables
+      include_vars: aws-var.yml
+
+    - name: Provision a set of instances
+      ec2:
+         aws_access_key: "{{ ec2_access_key }}"
+         aws_secret_key: "{{ ec2_secret_key }}"
+         key_name: "{{ key_pair }}"
+         region: "{{ aws_region }}" 
+         group: "{{ group }}"
+         instance_type: "{{ instance_type }}"
+         image: "{{ ami_id }}"
+         wait: true
+         exact_count: 2
+         count_tag:
+            Name: Demo
+         instance_tags:
+            Name: Demo
+      register: ec2
+
+

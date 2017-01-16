@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  gather_facts: False
+
+  tasks:
+
+    - name: Include variables
+      include_vars: aws-var.yml
+
+    - name: Provision a set of instances
+      ec2_remote_facts:
+         aws_access_key: "{{ ec2_access_key }}"
+         aws_secret_key: "{{ ec2_secret_key }}"
+         region: us-west-2
+
