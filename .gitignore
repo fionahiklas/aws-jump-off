@@ -91,5 +91,7 @@ ENV/
 ansible-env
 *.swp
 *.retry
+ansible-fact-cache
+
 
 

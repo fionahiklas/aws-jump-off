@@ -26,4 +26,24 @@ pip install passlib
 pip install boto 
 ```
 
+## Running
+
+### Gathering Facts
+
+I added a script that was intended to gather EC2 facts and dump/display them
+
+Run with the following command:
+
+```
+ansible-playbook --ask-vault-pass gather_facts.yml
+```
+
+### Creating EC2 instances
+
+Simple script that creates two VMs
+
+```
+ansible-playbook --ask-vault-pass build_simple_vm.yml
+```
+
 
