@@ -25,6 +25,7 @@
          instance_type: "{{ instance_type }}"
          image: "{{ ami_id }}"
          wait: true
+         user_data: "{{ aws_user_data }}"
          exact_count: 1
          count_tag:
             Name: Demo
