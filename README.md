@@ -46,4 +46,16 @@ Simple script that creates two VMs
 ansible-playbook --ask-vault-pass build_simple_vm.yml
 ```
 
+### Killing ALL instance
+
+Simple script that will kill ALL your instances
+
+NOTE: Need to improve this to select tags
+
+Run with the following command:
+
+```
+ansible-playbook --ask-vault-pass cleanup_simple.yml
+```
+
 

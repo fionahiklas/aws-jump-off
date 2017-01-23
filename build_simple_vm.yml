@@ -9,6 +9,7 @@
     - instance_type: t2.micro
     - group: default
     - aws_region: us-west-2
+    - aws_user_data: "{{ lookup('file', 'aws_user_data.sh' ) }}"
 
   tasks:
     - name: Include variables
@@ -24,11 +25,14 @@
          instance_type: "{{ instance_type }}"
          image: "{{ ami_id }}"
          wait: true
-         exact_count: 2
+         exact_count: 1
          count_tag:
             Name: Demo
          instance_tags:
             Name: Demo
+            Purpose: Jump-Off
       register: ec2
+
+ 
 
 

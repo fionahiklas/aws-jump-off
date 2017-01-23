@@ -18,6 +18,14 @@
       debug:
         msg: "EC2: {{ ec2 }}"
 
+    - name: Stop/terminate VMs
+      ec2:
+        instance_ids: [ "{{ item.id }}" ]
+        state: absent
+        aws_access_key: "{{ ec2_access_key }}"
+        aws_secret_key: "{{ ec2_secret_key }}"
+        region: us-west-2
+      with_items: "{{ ec2.instances }}" 
 
 
 
