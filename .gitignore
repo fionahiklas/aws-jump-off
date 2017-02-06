@@ -93,5 +93,11 @@ ansible-env
 *.retry
 ansible-fact-cache
 
+*.iml
+.idea
+
+# Apple stuff
+.DS_Store
+
 
 
