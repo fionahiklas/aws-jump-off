@@ -10,7 +10,10 @@
     - group: default
     - aws_region: us-west-2
     - aws_user_data: "{{ lookup('file', 'aws_user_data.sh' ) }}"
-
+    - unique_count_tag: "jump-off-test"
+    - instance_tags:
+         count_tag: "{{ unique_count_tag }}"
+         env: "development"
   tasks:
     - name: Include variables
       include_vars: aws-var.yml
@@ -26,7 +29,7 @@
          image: "{{ ami_id }}"
          wait: true
          user_data: "{{ aws_user_data }}"
-         exact_count: 1
+         exact_count: 2
          count_tag:
             Name: Demo
          instance_tags:

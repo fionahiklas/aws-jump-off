@@ -38,13 +38,24 @@ Run with the following command:
 ansible-playbook --ask-vault-pass gather_facts.yml
 ```
 
-### Creating EC2 instances
+### Creating EC2 instances With User Data
 
 Simple script that creates two VMs
 
 ```
 ansible-playbook --ask-vault-pass build_simple_vm.yml
 ```
+
+
+### Creating EC2 instances With Ansible Authorized Keys Module
+
+Simple script that creates two VMs
+
+```
+ansible-playbook --ask-vault-pass build_simple_vm.yml
+```
+
+
 
 ### Killing ALL instance
 
@@ -59,3 +70,7 @@ ansible-playbook --ask-vault-pass cleanup_simple.yml
 ```
 
 
+
+## Documentation
+
+* [Authorized keys module](http://docs.ansible.com/ansible/authorized_key_module.html)
