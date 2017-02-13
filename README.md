@@ -52,7 +52,7 @@ ansible-playbook --ask-vault-pass build_simple_vm.yml
 Simple script that creates two VMs
 
 ```
-ansible-playbook --ask-vault-pass build_simple_vm.yml
+ansible-playbook --ask-vault-pass build_with_auth_keys.yml
 ```
 
 
@@ -69,6 +69,13 @@ Run with the following command:
 ansible-playbook --ask-vault-pass cleanup_simple.yml
 ```
 
+### Creating Jump-off-infrastructre
+
+For testing just the infrastructure part
+
+```
+ansible-playbook --ask-vault-pass --tags infrastructure cleanup_simple.yml
+```
 
 
 ## Documentation
