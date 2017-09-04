@@ -6,7 +6,7 @@
   
   vars:
     - ami_id: ami-b7a114d7
-    - key_pair: Melman-fiona
+    - key_pair: Gia-fiona
     - instance_type: t2.micro
     - unique_count_tag: "jump-off-test"
     - environment: "development"
@@ -38,6 +38,10 @@
 
     - name: Add instances to in-memory hosts list
       add_host: hostname={{ item.public_ip }} groupname=ec2_hosts
+      with_items: "{{ ec2_information.tagged_instances }}"
+
+    - name: Wait for instances to listen on port 22
+      wait_for: state=started host={{ item.public_ip }} port=22 delay=10
       with_items: "{{ ec2_information.tagged_instances }}"
 
 - name: Gather facts
