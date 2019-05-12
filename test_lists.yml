@@ -1,0 +1,42 @@
+---
+- name: Test lists
+  hosts: localhost
+  vars:
+    subnet_list: 
+      - "123.0.0.0/32"
+      - "456.0.0.0/16"
+      - "789.1.0.0/16"
+
+  tasks:
+    - name: Create initial security group rule
+      set_fact:
+        security_group_rules: "{{  { 'proto':'tcp', 'from_port':22, 'to_port':22, 'cidr_ip':'0.0.0.0/0' }  }}"
+
+    - name: Debug initial variable
+      debug:
+        msg: "Initial variable: {{ security_group_rules }}"
+
+    - name: Create initial list
+      set_fact:
+        security_group_rules_list: "{{ [ security_group_rules]  }}"
+
+    - name: Debug initial variable
+      debug:
+        msg: "Initial variable: {{ security_group_rules_list }}"
+
+    - name: Add to rules list for subnets
+      set_fact:
+        security_group_rules_list: "{{ security_group_rules_list + [ { 'proto':'udp', 'from_port':25826, 'to_port':25826, 'cidr_ip': item } ]  }}"
+      with_items: "{{ subnet_list }}"
+
+    - name: Output a messages
+      debug:
+        msg: "Security group rules: {{ security_group_rules_list }}"
+
+    - name: Output several messages
+      debug:
+        msg: "Block: {{ item.cidr_ip }}"
+      with_items: "{{ security_group_rules_list }}"
+
+
+

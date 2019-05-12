@@ -18,6 +18,8 @@
       debug:
         msg: "EC2: {{ ec2 }}"
 
-
+    - name: Echo EC2 variables
+      debug:
+        msg: "ansible_ec2_instance_id: {{ ansible_ec2_instance_id }}"
 
 
